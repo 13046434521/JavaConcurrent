@@ -13,8 +13,9 @@ import java.util.concurrent.Executors;
  */
 
 class CyclicBarrierExample1 {
-    private static int count=20;
-    private static CyclicBarrier sCyclicBarrier=new CyclicBarrier(5);
+    private static int count = 5;
+
+    private static CyclicBarrier sCyclicBarrier = new CyclicBarrier(2);
     public static void main(String[] args) throws Exception{
         ExecutorService executorService= Executors.newCachedThreadPool();
 
@@ -41,7 +42,7 @@ class CyclicBarrierExample1 {
 
     private static void test(int threadNum) throws InterruptedException, BrokenBarrierException {
         System.out.println("wait:"+threadNum+" ThreadName: "+Thread.currentThread().getName());
-        sCyclicBarrier.await();
-        System.out.println("continue:"+threadNum+" ThreadName: "+Thread.currentThread().getName());
+        int a = sCyclicBarrier.await();
+        System.out.println("continue:" + threadNum + " ThreadName: " + Thread.currentThread().getName() + "---" + a);
     }
 }
